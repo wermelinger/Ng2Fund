@@ -7,6 +7,7 @@ import { EventsListComponent, EventThumbnailComponent, EventService, EventDetail
 import { NavbarComponent } from './nav/navbar.component'
 import { Error404Component } from './errors/404.component'
 import { ToastrService } from './common/toastr.service'
+import { CollapsibleWellComponent } from './common/collapsible-well.component'
 import { AuthService } from './user/auth.service'
 import { appRoutes } from './routes'
 
@@ -21,7 +22,8 @@ import { appRoutes } from './routes'
         CreateEventComponent,
         CreateSessionComponent,
         SessionListComponent,
-        Error404Component],
+        Error404Component,
+        CollapsibleWellComponent],
     providers: [EventService, ToastrService, EventRouteActivator, EventListResolver, AuthService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
     ],
