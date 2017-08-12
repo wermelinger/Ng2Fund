@@ -6,12 +6,12 @@ import { AppComponent } from './app.component'
 import { EventsListComponent, EventThumbnailComponent, EventService, EventDetailsComponent, CreateEventComponent, EventRouteActivator, EventListResolver, CreateSessionComponent, SessionListComponent, DurationPipe }  from './events/index'
 import { NavbarComponent } from './nav/navbar.component'
 import { Error404Component } from './errors/404.component'
-import { TOASTER_TOKEN, Toastr } from './common/toastr.service'
-import { CollapsibleWellComponent } from './common/collapsible-well.component'
+import { JQ_TOKEN, TOASTER_TOKEN, Toastr, CollapsibleWellComponent, SimpleModalComponent, ModalTriggerDirective } from './common/index'
 import { AuthService } from './user/auth.service'
 import { appRoutes } from './routes'
 
 declare let toastr: Toastr
+declare let jQuery: Object
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
@@ -26,8 +26,10 @@ declare let toastr: Toastr
         SessionListComponent,
         Error404Component,
         CollapsibleWellComponent,
+        SimpleModalComponent,
+        ModalTriggerDirective,
         DurationPipe],
-    providers: [EventService, { provide: TOASTER_TOKEN, useValue: toastr }, EventRouteActivator, EventListResolver, AuthService,
+    providers: [EventService, { provide: TOASTER_TOKEN, useValue: toastr }, { provide: JQ_TOKEN, useValue: jQuery }, EventRouteActivator, EventListResolver, AuthService,
         { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
     ],
     bootstrap: [AppComponent]
