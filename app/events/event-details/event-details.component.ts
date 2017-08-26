@@ -3,7 +3,7 @@ import { EventService } from '../shared/event.service'
 import { ActivatedRoute, Params } from '@angular/router'
 import { IEvent, ISession } from '../shared/index'
 
-@Component( {
+@Component({
     templateUrl: '/app/events/event-details/event-details.component.html',
     styles: [`
         .container { padding-left: 20px; padding-right: 20px; }
@@ -23,8 +23,8 @@ export class EventDetailsComponent {
     }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            this.event = this.eventService.getEvent(+params['id'])
+        this.route.data.forEach((data) => {
+            this.event = data['event']
             this.addMode = false
         })
     }
@@ -37,7 +37,7 @@ export class EventDetailsComponent {
         const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
         session.id = nextId + 1
         this.event.sessions.push(session)
-        this.eventService.updateEvent(this.event)
+        this.eventService.saveEvent(this.event).subscribe()
         this.addMode = false
     }
 
