@@ -18,4 +18,5 @@ Follow along with the course linked above. To start the server:
 ```
 npm install
 npm start
+karma start
 ```
