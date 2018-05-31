@@ -7,7 +7,7 @@ import { IEvent } from './shared/index'
 @Component({
     template: `
     <div>
-        <h1>Upcoming Angular 2 events</h1>
+        <h1>Upcoming Angular 2 events (on azure)</h1>
         <hr />
         <div class="row">
             <div class="col-md-5" *ngFor="let event of events">
