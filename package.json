@@ -6,7 +6,7 @@
     "server": "node node_modules/ng2f-server/server.js",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "postinstall": "npm tsc -w"
+    "postinstall": "npm run tsc:w"
   },
   "keywords": [],
   "author": "",
