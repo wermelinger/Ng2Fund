@@ -1,23 +1,38 @@
 import { Injectable } from '@angular/core'
 import { Subject, Observable } from 'rxjs/RX'
 import { IEvent } from './event.model'
+import { Http, Response } from '@angular/http'
+import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EventService {
+
+    readonly eventUrlOnAzure = "https://ng-fund-events.azurewebsites.net/api/HttpTriggerJS1?code=kJpgaJuVyhOGtlmAmYykzKfHPT87IbW2jzak0OJjL5SpOEHHNUHodQ==";
+
+    constructor(private http: Http) {
+
+    }
+
+    getEventsFromWeb(): Observable<IEvent[]> {
+      // now returns an Observable of IEvent
+      return this.http.get(this.eventUrlOnAzure)
+      .map((response: Response) => {
+        return <IEvent[]>response.json()
+      });
+    }
+
     getEvents(): Observable<IEvent[]> {
-        let subject = new Subject<IEvent[]>()
-        setTimeout(() => {
-          subject.next(EVENTS);
-          subject.complete();
-        }, 100)
-        return subject
+        return this.getEventsFromWeb();
     }   
 
     getEvent(id: number): IEvent {
-      return EVENTS.find(e => e.id == id);
+      // return EVENTS.find(e => e.id == id);
+      return null;
     }
 }
 
+// Original-events
 const EVENTS: IEvent[] = [
     {
       id: 1,

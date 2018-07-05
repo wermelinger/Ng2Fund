@@ -8,9 +8,10 @@ import { Error404Component } from './errors/404.component'
 import { ToastrService } from './common/toastr.service'
 import { AuthService } from './user/auth.service'
 import { appRoutes } from './routes'
+import { HttpModule } from '@angular/http'
 
 @NgModule({
-    imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+    imports: [BrowserModule, HttpModule, RouterModule.forRoot(appRoutes)],
     declarations: [
         AppComponent, 
         EventsListComponent,
